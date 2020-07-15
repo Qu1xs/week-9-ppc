@@ -7,4 +7,8 @@ class Party < ApplicationRecord
         self.private ? 'Private' : 'Public'
     end
 
+    def category_attributes=(attr)
+      self.category= Category.find_or_create_by(attr) if attr[:name].present?
+    end
+
 end

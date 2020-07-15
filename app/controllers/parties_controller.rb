@@ -5,6 +5,7 @@ class PartiesController < ApplicationController
 
     def new
         @party = Party.new(name: 'Halloween')
+        @party.build_category
     end
 
     def create
@@ -23,6 +24,6 @@ class PartiesController < ApplicationController
     private
     
     def party_params
-        params.require(:party).permit(:date, :budget, :name)
+        params.require(:party).permit(:date, :budget, :name, :category_id, category_attributes:[:name])
     end
 end
